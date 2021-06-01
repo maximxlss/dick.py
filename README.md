@@ -13,6 +13,7 @@ I'm not even sure if it is working.
 ## Not done yet
 - Anything besides the interpretation that should a good interpreter do
 - Isn't properly tested
+- Isn't fully compatable with the original Dick (not long) because you can't disable variable names restrictions
 - I plan to implement a russian translated version cuz I'm russian
 
 ## Some background

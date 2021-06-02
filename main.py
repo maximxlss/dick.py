@@ -11,7 +11,9 @@ def main(source: "Path to the source code file to execute", grammar_file: "Custo
         i = Interpreter()
         t = Transformer(grammar_file.required_words_in_varnames, legacy_vars)
         parser = Lark(grammar_file.grammar, parser="lalr", transformer=t, propagate_positions=True)
-        i.visit(parser.parse(f.read()))
+        src = f.read()
+        src = "\n" + src + "\n" # to make grammar rules properly ignore spaces in the beginning and the end
+        i.visit(parser.parse(src))
 
 argh.dispatch_command(main)
 

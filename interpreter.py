@@ -1,6 +1,6 @@
-from lark import Tree
+from lark import Tree, visitors
 
-class Interpreter:
+class Interpreter(visitors.Interpreter):
     def __init__(self, longdick_names, skip_names=False):
         """setting skip_names to true disables check for name legality (for compatability with older Dick)"""
         self.skip_names = skip_names
@@ -39,34 +39,41 @@ class Interpreter:
         else:
             raise Exception(f"You can't use get_value on a {value.data}")
 
-    def run(self, expr):
-        if expr.data == "setdick":
-            if not self.skip_names:
-                self.check_varname(expr.children[0].children[0])
-            self.vars[expr.children[0].children[0]] = self.get_value(expr.children[1])
-        elif expr.data == "grab":
-            self.hand = self.get_value(expr.children[0])
-        elif expr.data == "release":
-            self.vars[expr.children[0].children[0]] = self.hand
-            self.hand = 0
-        elif expr.data == "longdick":
-            self.hand += self.get_value(expr.children[0])
-        elif expr.data == "smalldick":
-            self.hand -= self.get_value(expr.children[0])
-        elif expr.data == "hugedick":
-            self.hand *= self.get_value(expr.children[0])
-        elif expr.data == "tinydick":
-            self.hand /= self.get_value(expr.children[0])
-            self.hand = int(self.hand)
-        elif expr.data == "pee":
-            print(self.hand, end="")
-        elif expr.data == "wee":
-            print(chr(self.hand), end="")
-        elif expr.data == "conditional":
-            if self.check_condition(expr.children[1]):
-                for inner_expr in expr.children[2].children:
-                    self.run(inner_expr)
-        elif expr.data == "while_loop":
-            while self.check_condition(expr.children[1]):
-                for inner_expr in expr.children[2].children:
-                    self.run(inner_expr)
+    def setdick(self, expr):
+        if not self.skip_names:
+            self.check_varname(expr.children[0].children[0])
+        self.vars[expr.children[0].children[0]] = self.get_value(expr.children[1])
+    
+    def grab(self, expr):
+        self.hand = self.get_value(expr.children[0])
+
+    def release(self, expr):
+        self.vars[expr.children[0].children[0]] = self.hand
+        self.hand = 0
+    
+    def longdick(self, expr):
+        self.hand += self.get_value(expr.children[0])
+
+    def smalldick(self, expr):
+        self.hand -= self.get_value(expr.children[0])
+    
+    def hugedick(self, expr):
+        self.hand *= self.get_value(expr.children[0])
+
+    def tinydick(self, expr):
+        self.hand /= self.get_value(expr.children[0])
+        self.hand = int(self.hand)
+    
+    def pee(self, expr):
+        print(self.hand, end="")
+    
+    def wee(self, expr):
+        print(chr(self.hand), end="")
+
+    def conditional(self, expr):
+        if self.check_condition(expr.children[1]):
+            self.visit(expr.children[2])
+    
+    def while_loop(self, expr):
+        while self.check_condition(expr.children[1]):
+            self.visit(expr.children[2])

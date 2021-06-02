@@ -9,8 +9,7 @@ def main(source: "Path to the source code file to execute", grammar_file: "Custo
         grammar_file = importlib.import_module(grammar_file)
         i = Interpreter(grammar_file.required_words_in_varnames, legacy_vars)
         parser = Lark(grammar_file.grammar)
-        for expr in parser.parse(f.read()).children:
-            i.run(expr)
+        i.visit(parser.parse(f.read()))
 
 argh.dispatch_command(main)
 

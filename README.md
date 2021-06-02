@@ -8,6 +8,7 @@ An [esolang](https://esolangs.org/wiki/LongDick) interpreter written in python.
 ## Usage
 - `main.py [-h] [-g GRAMMAR_FILE] [-l] source`
 - See `main.py -h` for help
+- See [examples](./examples/examples.md).
 
 ## Features
 - Working interpreter

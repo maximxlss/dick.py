@@ -35,17 +35,11 @@ class Interpreter:
         if value.data == "varname":
             return self.vars[value.children[0]]
         elif value.data == "dick":
-            value.children = list(filter(lambda x: isinstance(x, Tree) and x.data == "dickmid", value.children))
             return len(value.children)
         else:
             raise Exception(f"You can't use get_value on a {value.data}")
 
     def run(self, expr):
-        try:
-            if expr.type == "WS":
-                return
-        except:
-            pass
         if expr.data == "setdick":
             if not self.skip_names:
                 self.check_varname(expr.children[0].children[0])

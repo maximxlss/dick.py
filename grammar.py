@@ -1,6 +1,7 @@
 
 grammar = """
-    start: (WS* expr WS*)*
+    start: (expr "\\n"*)*
+    cockblock: (expr "\\n"*)*
 
     expr: "DICK " varname " " value -> setdick
         | "GRAB " value -> grab
@@ -11,10 +12,8 @@ grammar = """
         | "TINYDICK " value -> tinydick
         | "PEE" -> pee
         | "WEE" -> wee
-        | startif condition cockblock endif -> conditional
-        | startwhile condition cockblock endwhile -> while
-
-    cockblock: (WS* expr WS*)*
+        | startif condition "\\n"* cockblock endif -> conditional
+        | startwhile condition "\\n"* cockblock endwhile -> while
 
     startif: "LOOK! "
     condition: value " IS BIGGER THAN " value "!" -> bigger
@@ -33,11 +32,10 @@ grammar = """
 
     // imports
     %import common.CNAME
-    %import common.WS
 
     // ignore indentation
     %ignore /\\t/
-    %ignore "    "
+    %ignore " "
 """
 
 required_words_in_varnames =  ["Johnson", "Dick", "Cock", "Schlong", "Penis", "Dong"]

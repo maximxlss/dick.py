@@ -22,7 +22,7 @@ grammar = """
              | value " IS JUST LIKE " value "!" -> equal
     endif: "DICK JOKES ARE IMMATURE, SERIOUSLY"
 
-    startwhile: "COCK GO FAST IF"
+    startwhile: "COCK GO FAST IF "
     endwhile: "ALRIGHT, STOP COCKING AROUND"
 
     value: dick | varname

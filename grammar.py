@@ -13,7 +13,7 @@ grammar = """
         | "PEE" -> pee
         | "WEE" -> wee
         | startif condition "\\n"* cockblock endif -> conditional
-        | startwhile condition "\\n"* cockblock endwhile -> while
+        | startwhile condition "\\n"* cockblock endwhile -> while_loop
 
     startif: "LOOK! "
     condition: value " IS BIGGER THAN " value "!" -> bigger

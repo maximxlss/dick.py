@@ -66,7 +66,7 @@ class Interpreter:
             if self.check_condition(expr.children[1]):
                 for inner_expr in expr.children[2].children:
                     self.run(inner_expr)
-        elif expr.data == "while":
+        elif expr.data == "while_loop":
             while self.check_condition(expr.children[1]):
                 for inner_expr in expr.children[2].children:
                     self.run(inner_expr)

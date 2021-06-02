@@ -1,6 +1,6 @@
 
 grammar = """
-    start: (expr "\\n"*)*
+    start: "\\n"* (expr "\\n"*)*
     cockblock: (expr "\\n"*)*
 
     expr: "DICK " varname " " value -> setdick
@@ -35,7 +35,8 @@ grammar = """
 
     // ignore indentation
     %ignore /\\t/
-    %ignore " "
+    %ignore /(?<=\\n) +/
+    %ignore / +(?=\\n)/
 """
 
 required_words_in_varnames =  ["Johnson", "Dick", "Cock", "Schlong", "Penis", "Dong"]

@@ -70,9 +70,9 @@ class Interpreter:
             print(chr(self.hand), end="")
         elif expr.data == "conditional":
             if self.check_condition(expr.children[1]):
-                for expr in expr.children[2].children:
-                    self.run(expr)
+                for inner_expr in expr.children[2].children:
+                    self.run(inner_expr)
         elif expr.data == "while":
             while self.check_condition(expr.children[1]):
-                for expr in expr.children[2].children:
-                    self.run(expr)
+                for inner_expr in expr.children[2].children:
+                    self.run(inner_expr)

@@ -10,7 +10,7 @@ An [esolang](https://esolangs.org/wiki/LongDick) interpreter written in python.
 - `-h` - display a help message. It's less verbose than what you are reading now.
 - `-g GRAMMAR_FILE` - set custom grammar module name (filename without .py). See existing `grammar.py` and `russian_grammar.py`, [lark documentation](https://lark-parser.readthedocs.io/en/latest/grammar.html)
 - `-l` - Disable LongDick [varible name restrictions](./examples/name_restrictions.md)
-- `-t` - Transpile into Rust instead of interpreting. See [Transpiler section](#-Transpiler). By default, emits minimized code into stdout.
+- `-t` - Transpile into Rust instead of interpreting. See [Transpiler section](#Transpiler). By default, emits minimized code into stdout.
 - `-b` - Save emitted code into .rs file with same name in the same directory and run `rustfmt SOURCE.rs` and `rustc -C debuginfo=0 -C opt-level=3 --out-dir SOURCE-DIR SOURCE.rs`.
 - `-r` - Same as `-b`, but also runs built executable.
 - `--hash-map` - Use a HashMap to store variables instead of native variables. Allows to use any valid variable names, including `hand`, in contrast with native variables. Probably slow. Bug: also allows to release into not assigned variables.

@@ -63,6 +63,7 @@ class Interpreter:
             self.hand *= self.get_value(expr.children[0])
         elif expr.data == "tinydick":
             self.hand /= self.get_value(expr.children[0])
+            self.hand = int(self.hand)
         elif expr.data == "pee":
             print(self.hand, end="")
         elif expr.data == "wee":

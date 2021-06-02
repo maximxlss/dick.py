@@ -8,7 +8,7 @@ def main(source: "Path to the source code file to execute", grammar_file: "Custo
     with open(source, encoding="UTF-8") as f:
         grammar_file = importlib.import_module(grammar_file)
         i = Interpreter(grammar_file.required_words_in_varnames, legacy_vars)
-        parser = Lark(grammar_file.grammar)
+        parser = Lark(grammar_file.grammar, propagate_positions=True)
         i.visit(parser.parse(f.read()))
 
 argh.dispatch_command(main)

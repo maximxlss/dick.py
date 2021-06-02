@@ -3,9 +3,7 @@ from lark import Tree
 class Interpreter:
     def __init__(self, longdick_names, skip_names=False):
         """setting skip_names to true disables check for name legality (for compatability with older Dick)"""
-        if skip_names:
-            global get_varname
-            get_varname = lambda: None
+        self.skip_names = skip_names
         self.longdick_names = longdick_names
         self.vars = {}
         self.hand = 0
@@ -49,7 +47,8 @@ class Interpreter:
         except:
             pass
         if expr.data == "setdick":
-            self.check_varname(expr.children[0].children[0])
+            if not self.skip_names:
+                self.check_varname(expr.children[0].children[0])
             self.vars[expr.children[0].children[0]] = self.get_value(expr.children[1])
         elif expr.data == "grab":
             self.hand = self.get_value(expr.children[0])

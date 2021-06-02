@@ -1,6 +1,7 @@
 import argh
 from interpreter import Interpreter
 from transformer import Transformer
+from transpiler import Transpiler
 from lark import Lark
 import os
 import importlib

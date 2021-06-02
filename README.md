@@ -1,22 +1,39 @@
-# [Long]Dick interpreter
+# LongDick interpreter
 
 An [esolang](https://esolangs.org/wiki/LongDick) interpreter written in python.
-I'm not even sure if it is working.
-
 ## Installing
-- Requires some Python3? I didn't use modern features I think so it should work
+- Python >= 3.5
 - `pip install -r requirements.txt`
+
+## Usage
+- `main.py [-h] [-g GRAMMAR_FILE] [-l] source`
+- See `main.py -h` for help
 
 ## Features
 - Working interpreter
+- Support for custom grammar (russian translation included!)
+- Compatable with Dick
 
-## Not done yet
-- Anything besides the interpretation that should a good interpreter do
-- Isn't properly tested
-- Isn't fully compatable with the original Dick (not long) because you can't disable variable names restrictions
-- I plan to implement a russian translated version cuz I'm russian
+### Custom grammar
+- You can create custom grammar files. See existing `grammar.py` and `russian_grammar.py`, [lark documentation](https://lark-parser.readthedocs.io/en/latest/grammar.html)
+
+## Example: Factorial
+```
+DICK schlong 8============D
+
+DICK resulting_cock 8=D
+COCK GO FAST IF schlong IS BIGGER THAN 8=D!
+    GRAB resulting_cock
+    HUGEDICK schlong
+    RELEASE resulting_cock
+    GRAB schlong
+    SMALLDICK 8=D
+    RELEASE schlong
+ALRIGHT, STOP COCKING AROUND
+
+GRAB resulting_cock
+PEE
+```
 
 ## Some background
-I wanted to try creating a simple interpreter and stumbled across this esoteric gem. Made is literally one evening. Code is not very good. As everything here.
-
-## I will add example programs tomorrow
+I wanted to try creating a simple interpreter and stumbled across this esoteric gem. First version made in literally one evening. Code is not very good. As everything here.

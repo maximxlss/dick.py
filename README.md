@@ -19,7 +19,7 @@ An [esolang](https://esolangs.org/wiki/LongDick) interpreter written in python.
 ## Transpiler
 Has a transpiler to Rust, which is simple and does not perform any optimizations. Though the resulting code is simple and should be finely optimized by rustc and llvm.
 
-<sub><sup>Does this counts as a compiler?</sup></sub>
+<sub><sup>Does this count as a compiler?</sup></sub>
 
 ## Example: Factorial
 ```
